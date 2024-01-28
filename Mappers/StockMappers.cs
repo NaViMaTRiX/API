@@ -1,6 +1,7 @@
 ﻿namespace API.Mappers;
 
 using DTOs;
+using DTOs.Stock;
 using Models;
 
 public static class StockMappers
@@ -10,12 +11,13 @@ public static class StockMappers
         return new StockDto
         {
             Id = stockModel.Id,
-            Symbol = stockModel.Symbol,
-            CompanyName = stockModel.CompanyName,
+            Symbol = stockModel.Symbol.ToLower(),
+            CompanyName = stockModel.CompanyName.ToLower(),
             Purchase = stockModel.Purchase,
             LastDiv = stockModel.LastDiv,
             Industry = stockModel.Industry,
             MarketCap = stockModel.MarketCap,
+            Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
         };
     }
 

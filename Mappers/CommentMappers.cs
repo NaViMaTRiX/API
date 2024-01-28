@@ -1,30 +1,39 @@
 ﻿namespace API.Mappers;
 
 using DTOs;
+using DTOs.Comment;
 using Models;
 
 public static class CommentMappers
 {
-    public static CommentDto ToCommentDto(this Comment commentModel)
+    public static CommentDto ToCommentDto(this Comment commentDto)
     {
         return new CommentDto
         {
-            Id = commentModel.Id,
-            Title = commentModel.Title,
-            Content = commentModel.Content,
-            CreatedOn = commentModel.CreatedOn,
-            StockId = commentModel.StockId,
+            Id = commentDto.Id,
+            Title = commentDto.Title,
+            Content = commentDto.Content,
+            CreatedOn = commentDto.CreatedOn,
+            StockId = commentDto.StockId
         };
     }
 
-    public static Comment ToCommentFromCreateDTO(this CreateCommentRequestDto commentDto)
+    public static Comment ToCommentFromCreate(this CreateCommentDto commentDto, int stockId)
     {
         return new Comment
         {
+            Title = commentDto.Title,
             Content = commentDto.Content,
-            Title = commentDto.Content,
-            CreatedOn = commentDto.CreatedOn,
-            StockId = commentDto.StockId,
+            StockId = stockId
+        };
+    }
+    
+    public static Comment ToCommentFromUpdate(this UpdateCommentRequestDto commentDto)
+    {
+        return new Comment
+        {
+            Title = commentDto.Title,
+            Content = commentDto.Content
         };
     }
 }
