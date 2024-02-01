@@ -1,7 +1,10 @@
-﻿namespace API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models
 {
     using Helper;
-
+    
+    [Table("Comments")]
     public class Comment
     {
         public int Id { get; set; }
