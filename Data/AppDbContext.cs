@@ -30,7 +30,7 @@ namespace API.Data
             modelBuilder.Entity<Portfolio>()
                 .HasOne(u => u.Stock)
                 .WithMany(u => u.Portfolios)
-                .HasForeignKey(u => u.StockId); 
+                .HasForeignKey(u => u.StockId);
             
             List<IdentityRole> roles = new List<IdentityRole>
             {

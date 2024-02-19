@@ -60,4 +60,25 @@ public class PortfolioController : ControllerBase
         else
             return Created();
     }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete(string symbol)
+    {
+        var username = User.GetUserName();
+        var appUser = await _userManager.FindByNameAsync(username);
+
+        var userPortfolio = await _portfolioRepository.GetUserPortfolio(appUser);
+
+        var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
+
+        if (filteredStock.Count() == 1)
+        {
+            await _portfolioRepository.DeletePortfolio(appUser, symbol);
+        }
+        else
+            return BadRequest(ModelState);
+
+        return Ok();
+    }
+    
 }

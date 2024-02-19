@@ -14,6 +14,7 @@ public static class CommentMappers
             Title = commentDto.Title,
             Content = commentDto.Content,
             CreatedOn = commentDto.CreatedOn,
+            CreateBy = commentDto.AppUser.UserName,
             StockId = commentDto.StockId
         };
     }
